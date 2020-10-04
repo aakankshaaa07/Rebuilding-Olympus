@@ -1,0 +1,530 @@
+@import "./mixins";
+
+@font-face {
+  src: url("/Font/PolarVertex-Regular.otf") format("opentype");
+  font-family: polar;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #757575;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  // background: linear-gradient(to bottom, #7ed56f88, #28b48588);
+  background-color: #ebf7fd;
+  &:hover {
+    background: linear-gradient(to top, #7ed56f, #28b485);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  line-height: 1.3;
+  overflow-x: hidden;
+}
+
+.header {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/glitchimg.jpg");
+  background-size: cover;
+  z-index: 1;
+}
+
+main {
+  height: 100vh;
+  background: url("../assets/moon.jpg");
+  display: none;
+  font-family: polar;
+
+  @include respond(glitch) {
+    display: block;
+  }
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fefefe;
+    font-size: 3rem;
+
+    @include respond(small-phone) {
+      font-size: 2rem;
+    }
+  }
+}
+
+header {
+  @include respond(glitch) {
+    display: none;
+  }
+}
+
+.glitch__layers {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.glitch__layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background-image: url("/glitchimg.jpg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.glitch__layer:nth-child(1) {
+  transform: translateX(-5%);
+  animation: glitch-anim-1 2s infinite linear alternate;
+}
+
+.glitch__layer:nth-child(2) {
+  transform: translateY(3%);
+  animation: glitch-anim-2 2.3s -0.8s infinite linear alternate;
+}
+
+.glitch__layer:nth-child(3) {
+  animation: glitch-anim-flash 1s infinite linear;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: polygon(0 0%, 100% 0%, 100% 5%, 0 5%);
+  }
+  10% {
+    clip-path: polygon(0 15%, 100% 15%, 100% 15%, 0 15%);
+  }
+  20% {
+    clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+  }
+  30% {
+    clip-path: polygon(0 1%, 100% 1%, 100% 2%, 0 2%);
+  }
+  40% {
+    clip-path: polygon(0 35%, 100% 35%, 100% 35%, 0 35%);
+  }
+  50% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 46%, 0 46%);
+  }
+  60% {
+    clip-path: polygon(0 50%, 100% 50%, 100% 70%, 0 70%);
+  }
+  70% {
+    clip-path: polygon(0 70%, 100% 70%, 100% 70%, 0 70%);
+  }
+  80% {
+    clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%);
+  }
+  90% {
+    clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%);
+  }
+  100% {
+    clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%);
+  }
+  15% {
+    clip-path: polygon(0 3%, 100% 3%, 100% 3%, 0 3%);
+  }
+  25% {
+    clip-path: polygon(0 8%, 100% 8%, 100% 20%, 0 20%);
+  }
+  30% {
+    clip-path: polygon(0 20%, 100% 20%, 100% 20%, 0 20%);
+  }
+  45% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 45%, 0 45%);
+  }
+  50% {
+    clip-path: polygon(0 50%, 100% 50%, 100% 57%, 0 57%);
+  }
+  65% {
+    clip-path: polygon(0 60%, 100% 60%, 100% 60%, 0 60%);
+  }
+  75% {
+    clip-path: polygon(0 80%, 100% 80%, 100% 80%, 0 80%);
+  }
+  80% {
+    clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
+  }
+  95% {
+    clip-path: polygon(0 45%, 100% 45%, 100% 60%, 0 60%);
+  }
+  100% {
+    clip-path: polygon(0 11%, 100% 11%, 100% 15%, 0 15%);
+  }
+}
+
+@keyframes glitch-anim-flash {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.heading-primary {
+  color: white;
+  font-family: polar;
+  text-align: center;
+  font-size: 7rem;
+
+  @include respond(medium-phone) {
+    font-size: 4rem;
+  }
+
+  @include respond(small-phone) {
+    font-size: 2.75rem;
+  }
+}
+
+.row-apocalypse {
+  margin-top: -100px;
+  padding: 50px;
+  display: flex;
+
+  @include respond(tab-land) {
+    flex-direction: column;
+  }
+}
+
+.txt-apocalypse {
+  width: 50%;
+  color: white;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.5rem;
+
+  @include respond(tab-land) {
+    margin: auto;
+    width: 70%;
+    order: 2;
+    margin-top: 1rem;
+  }
+  @include respond(very-large-phone) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.img-apocalypse {
+  margin: auto;
+
+  clip-path: polygon(
+    53% 3%,
+    94% 1%,
+    99% 35%,
+    100% 70%,
+    95% 97%,
+    55% 93%,
+    0 96%,
+    11% 77%,
+    3% 39%,
+    1% 1%
+  );
+
+  @include respond(very-large-phone) {
+    transform: scale(0.7);
+    margin: 0 auto;
+  }
+
+  @include respond(fuck-js) {
+    transform: scale(0.7) translateX(-6rem);
+  }
+
+  @include respond(phone) {
+    transform: scale(0.5) translateX(-15rem);
+  }
+  @include respond(small-phone) {
+    transform: scale(0.45) translateX(-23rem);
+  }
+
+  @include respond(kill-me) {
+    transform: scale(0.375) translateX(-35rem);
+  }
+
+  @include respond(tiny-phone) {
+    transform: scale(0.35) translateX(-42rem);
+  }
+}
+
+.main-img {
+  z-index: 1;
+}
+
+.olympus {
+  margin-top: -5rem;
+}
+
+.row-olympus {
+  margin-top: -100px;
+  padding: 50px;
+  display: flex;
+  justify-content: flex-end;
+
+  @include respond(tab-land) {
+    flex-direction: column;
+  }
+}
+
+.txt-olympus {
+  width: 50%;
+  grid-area: txt-olympus;
+  color: white;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.5rem;
+
+  @include respond(tab-land) {
+    margin: auto;
+    width: 70%;
+    margin-top: 1rem;
+  }
+
+  @include respond(very-large-phone) {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.img-olympus {
+  order: -1;
+  margin: auto;
+
+  clip-path: polygon(
+    64% 5%,
+    100% 0,
+    99% 35%,
+    100% 70%,
+    95% 97%,
+    37% 92%,
+    5% 100%,
+    0 71%,
+    2% 37%,
+    1% 1%
+  );
+
+  @include respond(very-large-phone) {
+    transform: scale(0.7);
+    margin: 0 auto;
+  }
+
+  @include respond(very-large-phone) {
+    transform: scale(0.7);
+    margin: 0 auto;
+  }
+
+  @include respond(fuck-js) {
+    transform: scale(0.7) translateX(-6rem);
+  }
+
+  @include respond(phone) {
+    transform: scale(0.5) translateX(-15rem);
+  }
+  @include respond(small-phone) {
+    transform: scale(0.45) translateX(-23rem);
+  }
+
+  @include respond(kill-me) {
+    transform: scale(0.375) translateX(-35rem);
+  }
+
+  @include respond(tiny-phone) {
+    transform: scale(0.35) translateX(-42rem);
+  }
+}
+
+.main-img {
+  z-index: 1;
+}
+
+.community {
+  margin-top: -5rem;
+  margin-bottom: 10rem;
+}
+
+.txt-community {
+  color: white;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.5rem;
+  padding: 3rem 6rem;
+  margin-top: -3rem;
+
+  @include respond(medium-phone) {
+    font-size: 4rem;
+  }
+  @include respond(small-phone) {
+    font-size: 2rem;
+    padding: 0;
+    margin: auto;
+  }
+  @include respond(very-large-phone) {
+    width: 80%;
+    margin-top: 1rem;
+    font-size: 1.15rem;
+    // padding: 3rem 2rem 2rem 1rem;
+  }
+}
+
+.btn-container {
+  margin: 7rem auto;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+
+  @include respond(large-phone) {
+    flex-direction: column;
+  }
+}
+
+.btn-community {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: max-content;
+
+  @include respond(large-phone) {
+    flex-direction: column;
+  }
+}
+
+.button {
+  width: 15rem;
+  background-color: black;
+  color: white;
+  padding: 1rem 2.5rem;
+  font-size: 1.5rem;
+  font-family: "Ubuntu Mono", monospace;
+  cursor: pointer;
+  transition: 0.2s all;
+  border-radius: 5px;
+}
+
+.buttonl {
+  width: 19rem;
+  border: solid 1px red;
+  margin-right: 20px;
+  &:hover {
+    background-color: red;
+  }
+
+  @include respond(large-phone) {
+    margin-right: 0;
+  }
+}
+
+.buttonj {
+  width: 19rem;
+  border: solid 1px #39ff14;
+  &:hover {
+    background-color: #39ff1499;
+  }
+
+  @include respond(large-phone) {
+    margin-top: 2rem;
+  }
+}
+.modall, .modalj {
+	z-index: 20;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: absolute;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-hiddenl, .modal-hiddenj {
+	display: none;
+}
+
+.modal-containerl {
+	position: relative;
+	background-color: black;
+	padding: 2rem 4rem;
+	border: solid 1px red;
+	color: red;
+	font-family: 'Ubuntu Mono', monospace;
+}
+
+.back {
+	width: 10rem;
+	height: 3rem;
+	background-color: black;
+	color: white;
+	padding: 15px 40px;
+	font-size: 1rem;
+	font-family: 'Ubuntu Mono', monospace;
+	cursor: pointer;
+	margin-top: 1rem;
+	border: solid 1px red;
+	&:hover {
+		background-color: red;
+	}
+}
+
+.modal-containerj {
+	position: relative;
+	background-color: black;
+	padding: 2rem 4rem;
+	border: solid 1px #39ff14;
+	color: #39ff14;
+	font-family: 'Ubuntu Mono', monospace;
+}
+
+.username, .password {
+	width: 15.5rem;
+	height: 1rem;
+	font-size: 1rem;
+	font-family: 'Ubuntu Mono', monospace;
+	padding: 15px 40px;
+	border: solid 1px#39ff14;
+	color: #39ff14;
+	background-color: black;
+}
+
+.join, .home {
+	width: 10rem;
+	height: 3rem;
+	background-color: black;
+	color: white;
+	padding: 15px 40px;
+	font-size: 1rem;
+	font-family: 'Ubuntu Mono', monospace;
+	cursor: pointer;
+	margin-top: 1rem;
+	border: solid 1px#39ff14;
+	&:hover {
+		background-color:#39ff14;
+	}
+}
